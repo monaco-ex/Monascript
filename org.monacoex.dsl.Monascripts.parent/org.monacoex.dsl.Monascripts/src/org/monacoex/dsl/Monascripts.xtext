@@ -16,7 +16,17 @@ grammar org.monacoex.dsl.Monascripts with org.eclipse.xtext.common.Terminals
 generate monascripts "http://www.monacoex.org/dsl/Monascripts"
 
 Model:
-	toplevel=cc_T;
+        (defs += constDef)*
+        toplevel=cc_T
+        (defs += constDef)*;
+
+constDef: const_hex | const_num;
+const_hex: 'const' name=ID (':' 'hex' '=' value=(NUM|HEX) | '=' value=HEX);
+const_num: 'const' name=ID (':' 'num' '=' value=(NUM|HEX) | '=' value=NUM);
+
+num_element: value = NUM | ref = [const_num|ID];
+hex_element: value = HEX | ref = [const_hex|ID];
+hex_array: list += hex_element (',' list += hex_element)*;
 
 /* Calling convensions */
 cc_T: node=t_pk|t_multi|t_time|t_hash|t_and_p|t_or_p|t_or_c|t_or_v|t_or_d|t_or_s|t_or_a|t_thres;
@@ -29,79 +39,77 @@ cc_W: node=w_pk|w_multi|w_time|w_hash|w_lift_l|w_lift_u|w_and_p|w_and_c|w_or_p|w
 // Legend
 
 /* Pubkey check */
-t_pk: 'pk' '(' pubkey=HEX ')';
-v_pk: 'pk' '(' pubkey=HEX ')';
-f_pk: 'pk' '(' pubkey=HEX ')';
-q_pk: 'pk' '(' pubkey=HEX ')';
-e_pk: 'pk' '(' pubkey=HEX ')';
-w_pk: 'pk' '(' pubkey=HEX ')';
+t_pk: name = 'pk' '(' pubkey = hex_element ')';
+v_pk: name = 'pk' '(' pubkey = hex_element ')';
+f_pk: name = 'pk' '(' pubkey = hex_element ')';
+q_pk: name = 'pk' '(' pubkey = hex_element ')';
+e_pk: name = 'pk' '(' pubkey = hex_element ')';
+w_pk: name = 'pk' '(' pubkey = hex_element ')';
 
 /* Multiple pubkey check */
-t_multi: 'multi' '(' num = NUM ',' keys += HEX (',' keys += HEX)* ')';
-v_multi: 'multi' '(' num = NUM ',' keys += HEX (',' keys += HEX)* ')';
-f_multi: 'multi' '(' num = NUM ',' keys += HEX (',' keys += HEX)* ')';
-e_multi: 'multi' '(' num = NUM ',' keys += HEX (',' keys += HEX)* ')';
-w_multi: 'multi' '(' num = NUM ',' keys += HEX (',' keys += HEX)* ')';
+t_multi: name = 'multi' '(' num = num_element ',' keys = hex_array ')';
+v_multi: name = 'multi' '(' num = num_element ',' keys = hex_array ')';
+f_multi: name = 'multi' '(' num = num_element ',' keys = hex_array ')';
+e_multi: name = 'multi' '(' num = num_element ',' keys = hex_array ')';
+w_multi: name = 'multi' '(' num = num_element ',' keys = hex_array ')';
 
 /* Time locks */
-t_time: 'time' '(' coin_age = NUM ')';
-v_time: 'time' '(' coin_age = NUM ')';
-f_time: 'time' '(' coin_age = NUM ')';
-e_time: 'time' '(' coin_age = NUM ')';
-w_time: 'time' '(' coin_age = NUM ')';
+t_time: name = 'time' '(' coin_age = num_element ')';
+v_time: name = 'time' '(' coin_age = num_element ')';
+f_time: name = 'time' '(' coin_age = num_element ')';
+e_time: name = 'time' '(' coin_age = num_element ')';
+w_time: name = 'time' '(' coin_age = num_element ')';
 
 /* Hash locks */
-t_hash: 'hash' '(' hash = HEX ')';
-v_hash: 'hash' '(' hash = HEX ')';
-f_hash: 'hash' '(' hash = HEX ')';
-w_hash: 'hash' '(' hash = HEX ')';
+t_hash: name = 'hash' '(' hash = hex_element ')';
+v_hash: name = 'hash' '(' hash = hex_element ')';
+f_hash: name = 'hash' '(' hash = hex_element ')';
+w_hash: name = 'hash' '(' hash = hex_element ')';
 
 /* Conditional wraps */
-e_lift_l: 'lift_l' '(' f=cc_F ')';
-w_lift_l: 'lift_l' '(' f=cc_F ')';
-e_lift_u: 'lift_u' '(' f=cc_F ')';
-w_lift_u: 'lift_u' '(' f=cc_F ')';
+e_lift_l: name = 'lift_l' '(' f=cc_F ')';
+w_lift_l: name = 'lift_l' '(' f=cc_F ')';
+e_lift_u: name = 'lift_u' '(' f=cc_F ')';
+w_lift_u: name = 'lift_u' '(' f=cc_F ')';
 
 /* Conjunctions */
-t_and_p: 'and' '(' left = cc_T ',' right = cc_V ')';
-v_and_p: 'and' '(' left = cc_V ',' right = cc_V ')';
-f_and_p: 'and' '(' left = cc_F ',' right = cc_V ')';
-e_and_p: 'and' '(' left = cc_E ',' right = cc_W ')';
-w_and_p: 'and' '(' left = cc_W ',' right = cc_E ')';
-e_and_c: 'and' '(' left = cc_E ',' right = cc_F ')';
-w_and_c: 'and' '(' left = cc_W ',' right = cc_V ')';
+t_and_p: name = 'and' '(' left = cc_T ',' right = cc_V ')';
+v_and_p: name = 'and' '(' left = cc_V ',' right = cc_V ')';
+f_and_p: name = 'and' '(' left = cc_F ',' right = cc_V ')';
+e_and_p: name = 'and' '(' left = cc_E ',' right = cc_W ')';
+w_and_p: name = 'and' '(' left = cc_W ',' right = cc_E ')';
+e_and_c: name = 'and' '(' left = cc_E ',' right = cc_F ')';
+w_and_c: name = 'and' '(' left = cc_W ',' right = cc_V ')';
 
 /* Disjunctions */
-t_or_p: 'or' '(' left = cc_E ',' right = cc_W ')';
-e_or_p: 'or' '(' left = cc_E ',' right = cc_W ')';
-w_or_p: 'or' '(' left = cc_E ',' right = cc_W ')';
-t_or_c: 'or' '(' left = cc_E ',' right = cc_T ')';
-e_or_c: 'or' '(' left = cc_E ',' right = cc_E ')';
-t_or_v: 'or' '(' left = cc_E ',' right = cc_V ')';
-v_or_v: 'or' '(' left = cc_E ',' right = cc_V ')';
-f_or_v: 'or' '(' left = cc_E ',' right = cc_V ')';
-t_or_d: 'or' '(' left = cc_Q ',' right = cc_Q ')';
-v_or_d: 'or' '(' left = cc_Q ',' right = cc_Q ')';
-f_or_d: 'or' '(' left = cc_Q ',' right = cc_Q ')';
-t_or_s: 'or' '(' left = cc_T ',' right = cc_T ')';
-v_or_s: 'or' '(' left = cc_V ',' right = cc_V ')';
-f_or_s: 'or' '(' left = cc_F ',' right = cc_F ')';
-q_or_s: 'or' '(' left = cc_Q ',' right = cc_Q ')';
-e_or_s: 'or' '(' left = cc_F ',' right = cc_E ')';
-w_or_s: 'or' '(' left = cc_F ',' right = cc_E ')';
-t_or_a: 'or' '(' left = cc_V ',' right = cc_V ')';
-v_or_a: 'or' '(' left = cc_T ',' right = cc_T ')';
-f_or_a: 'or' '(' left = cc_V ',' right = cc_V ')';
-e_or_a: 'or' '(' left = cc_F ',' right = cc_E ')';
-w_or_a: 'or' '(' left = cc_F ',' right = cc_E ')';
+t_or_p: name = 'or' '(' left = cc_E ',' right = cc_W ')';
+e_or_p: name = 'or' '(' left = cc_E ',' right = cc_W ')';
+w_or_p: name = 'or' '(' left = cc_E ',' right = cc_W ')';
+t_or_c: name = 'or' '(' left = cc_E ',' right = cc_T ')';
+e_or_c: name = 'or' '(' left = cc_E ',' right = cc_E ')';
+t_or_v: name = 'or' '(' left = cc_E ',' right = cc_V ')';
+v_or_v: name = 'or' '(' left = cc_E ',' right = cc_V ')';
+f_or_v: name = 'or' '(' left = cc_E ',' right = cc_V ')';
+t_or_d: name = 'or' '(' left = cc_Q ',' right = cc_Q ')';
+v_or_d: name = 'or' '(' left = cc_Q ',' right = cc_Q ')';
+f_or_d: name = 'or' '(' left = cc_Q ',' right = cc_Q ')';
+t_or_s: name = 'or' '(' left = cc_T ',' right = cc_T ')';
+v_or_s: name = 'or' '(' left = cc_V ',' right = cc_V ')';
+f_or_s: name = 'or' '(' left = cc_F ',' right = cc_F ')';
+q_or_s: name = 'or' '(' left = cc_Q ',' right = cc_Q ')';
+e_or_s: name = 'or' '(' left = cc_F ',' right = cc_E ')';
+w_or_s: name = 'or' '(' left = cc_F ',' right = cc_E ')';
+t_or_a: name = 'or' '(' left = cc_V ',' right = cc_V ')';
+v_or_a: name = 'or' '(' left = cc_T ',' right = cc_T ')';
+f_or_a: name = 'or' '(' left = cc_V ',' right = cc_V ')';
+e_or_a: name = 'or' '(' left = cc_F ',' right = cc_E ')';
+w_or_a: name = 'or' '(' left = cc_F ',' right = cc_E ')';
 
 /* Thresholds */
-t_thres: 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
-v_thres: 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
-f_thres: 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
-e_thres: 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
-w_thres: 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
+t_thres: name = 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
+v_thres: name = 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
+f_thres: name = 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
+e_thres: name = 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
+w_thres: name = 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
 
 terminal HEX: '0x' ('0'..'9'|'a'..'f'|'A'..'F')+;
-terminal NUM: INT;
-
