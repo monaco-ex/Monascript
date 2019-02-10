@@ -9,8 +9,7 @@
  * License: EPL2
  * Copyright: HashHub K.K.
  * Initial author: monaka@hashhub.tokyo
- *
- /
+ */
 grammar org.monacoex.dsl.Monascripts with org.eclipse.xtext.common.Terminals
 
 generate monascripts "http://www.monacoex.org/dsl/Monascripts"
@@ -113,3 +112,4 @@ e_thres: name = 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
 w_thres: name = 'thres' '(' num = cc_E ',' keys += cc_W (',' keys += cc_W)* ')';
 
 terminal HEX: '0x' ('0'..'9'|'a'..'f'|'A'..'F')+;
+terminal NUM: INT;
