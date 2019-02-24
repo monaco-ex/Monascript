@@ -1,0 +1,151 @@
+grammar org.monacoex.dsl.monascript.Language with org.eclipse.xtext.common.Terminals
+
+generate language "http://www.monacoex.org/dsl/monascript/Language"
+
+Model:
+	(defines += Define|defuns += Defun)*
+	'contract' contract = [Defun|STRING]
+;
+
+Contract: T | V | F | Q | E | W;
+Defun: 'defun' name=STRING ('=' contract = T |
+  ':' ('toplevel' '=' contract = T |
+    'verify' '=' contract = V |
+    'forced' '=' contract = F |
+    'queue' '=' contract = Q |
+    'expression' '=' contract = E |
+    'wrapped' '=' contract = W));
+
+enum CallingConvention: TOPLEVEL = 'toplevel' | VERIFY = 'verify' | FORCED = 'forced' | QUEUE = 'queue' | EXPRESSION = 'expression' | WRAPPED = 'wrapped';
+
+
+Define: DefVar;
+DefVar: 'var' id = ID ('=' value = HEX|INT)?;
+
+T:
+	element = (/* PMTH T */ T_and_base | T_and_p | T_or_base | T_or_p | T_or_c | T_or_v | T_or_d /*| T_or_s | T_or_a */);
+V:
+	/* PMTH T */ V_and_base | V_and_p /* | Or_v | Or_d | V_or_s | V_or_a */;
+F:
+	/* PMTH T */ F_and_base | F_and_p /*| Or_v | Or_d | F_or_s | F_or_a*/;
+Q:
+	/* P */ Q_or_base | Q_or_s;
+E:
+	/* PMT T */ /*E_lift_l | E_lift_u*/ E_and_base | E_and_p | E_and_c /* | Or_p | E_or_c | E_or_s /*EW_or_a |*/;
+W:
+	/* PMTH T */ /*W_lift_l | W_lift_u | */W_and_base | W_and_p | W_and_c /* | Or_p | W_or_s | EW_or_a */;
+
+Pk: 'check' '(' key=key ')';
+
+Multi: 'multi' '(' num = INT ',' keys += key (',' keys += key)* ')';
+
+Time: 'time' '(' (time_age = INT|ref=[Define|ID]) ')';
+
+Hash: 'hash' '(' (hex = HEX|ref=[Define|ID]) ')';
+
+PMTT: Pk | Multi | Time | Thres;
+PMTHT: PMTT | Hash;
+
+/*
+E_Lift_l: 'lift' '(' f = F ')';
+W_lift_l: 'lift' '(' f = F ')';
+E_lift_u: 'lift' '(' f = F ')';
+W_lift_u: 'lift' '(' f = F ')';
+*/
+
+T_and_base: 'and' '(' a = PMTHT ',' b = PMTHT ')';
+V_and_base: 'and' '(' a = PMTHT ',' b = PMTHT ')';
+F_and_base: 'and' '(' a = PMTHT ',' b = PMTHT ')';
+E_and_base: 'and' '(' a = PMTT ',' b = PMTHT ')';
+W_and_base: 'and' '(' a = PMTT ',' b = PMTHT ')';
+
+T_or_base: 'or' '(' a = PMTHT ',' b = PMTHT ')';
+
+Q_or_base: 'or' '(' a = Pk ',' b = Pk ')';
+
+T_and_consts:
+	'('  ')';
+	
+T_and_p: dummy = 'add' '('
+	(a = T ',' b = PMTHT) |
+	(a = PMTHT ',' b = V)
+	')';
+
+V_and_p: dummy = 'and' '('
+	((a = V ',' b = PMTHT) |
+	 (a = PMTHT ',' b = V)) ')';
+
+F_and_p: dummy = 'and' '('
+	((a = F ',' b = PMTHT) |
+	 (a = PMTHT ',' b = V)) ')';
+
+E_and_p: dummy = 'and' '('
+	((a = E ',' b = PMTHT) |
+	 (a = PMTT ',' b = W)) ')';
+
+W_and_p: dummy = 'and' '('
+	((a = E ',' b = PMTHT) |
+	 (a = PMTT ',' b = W)) ')';
+
+E_and_c: dummy = 'and' '(' 
+	((a = E ',' b = PMTHT) |
+	 (a = PMTT ',' b = F)) ')';
+
+W_and_c: dummy = 'and' '(' 
+	((a = E ',' b = PMTHT) |
+	 (a = PMTT ',' b = F)) ')';
+
+T_or_p: dummy = 'or' '('
+	((a = W ',' b = PMTT) |
+	 (a = PMTHT ',' b = E)) ')';
+
+T_or_c: dummy = 'or' '('
+	((a = E ',' b = PMTHT) |
+	 (a = PMTT ',' b = T)) ')';
+
+
+E_or_c: dummy = 'or' '('
+	((a = E ',' b = PMTT) |
+	 (a = PMTT ',' b = E)) ')';
+
+T_or_v: dummy = 'or' '('
+	((a = E ',' b = PMTHT) |
+	 (a = PMTT ',' b = V)) ')';
+
+Or_v: dummy = 'or' '('
+	((a = E ',' b = PMTHT) |
+	 (a = PMTT ',' b = V)) ')';
+
+T_or_s: dummy = 'or' '(' a = T ',' b = T ')';
+V_or_s: dummy = 'or' '(' a = V ',' b = V ')';
+F_or_s: dummy = 'or' '(' a = F ',' b = F ')';                                       
+
+T_or_d: dummy = 'or' '('
+	((a = Q ',' b = Pk) |
+	 (a = Pk ',' b = Q)) ')';
+
+Q_or_s: 'or' '('
+	((a = Q ',' b = Pk) |
+	 (a = Pk ',' b = Q)) ')';
+
+
+E_or_s: 'or' '(' a = F ',' b = E ')';
+W_or_s: 'or' '(' a = F ',' b = E ')';
+T_or_a: 'or' '(' a = V ',' b = V ')';
+V_or_a: 'or' '(' a = T ',' b = T ')';
+F_or_a: 'or' '(' a = V ',' b = V ')';
+/* EW_or_a: 'or' '(' a = F ',' b = E ')'; duplicate rule */
+
+Thres: 'thres' '(' num = INT ',' a += E (',' sumElements += W)+ ')';
+
+key: C | U;
+
+C: COMPRESSED_PUBKEY;
+
+U: UNCOMPRESSED_PUBKEY;
+
+terminal HEX_BASE: ('0'..'9'|'a'..'f'|'A'..'F')+;
+terminal HEX: '0x' HEX_BASE; 
+terminal UNCOMPRESSED_PUBKEY: '04' HEX_BASE;
+terminal COMPRESSED_PUBKEY: ('02'|'03') HEX_BASE;
+	

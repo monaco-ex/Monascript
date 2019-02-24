@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.monacoex.org/dsl/monascript/Language"
+			class = "org.monacoex.dsl.monascript.language.LanguagePackage"
+			genModel = "model/generated/Language.genmodel" />
+	</extension>
+</plugin>
