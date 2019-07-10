@@ -12,3 +12,20 @@ docker run -it --rm -p 8080:8080 monacoex/monascript:web
 
 Open `http://localhost:8080/` with your Web browser after the container was deployed.
 
+# Crowdfunding
+
+https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
+
+## Platinum Sponsor
+
+## Gold Sponsor
+
+## Silver Sponsor
+
+## Bronze Sponsor
+
+## Nagesen Sponsor
+
+## Cloud Resource Sponsor
+
+<img src="https://pbs.twimg.com/profile_images/1130423906647470080/JR90577T_400x400.png" width="50px" height="50px" title="PizzaFactory/Camino">
