@@ -28,4 +28,4 @@ https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
 
 ## Cloud Resource Sponsor
 
-<img src="https://pbs.twimg.com/profile_images/1130423906647470080/JR90577T_400x400.png" width="50px" height="50px" title="PizzaFactory/Camino">
+<a href="https://twitter.com/PizzaFactoryIDE/"><img src="https://pbs.twimg.com/profile_images/1130423906647470080/JR90577T_400x400.png" width="50px" height="50px" title="PizzaFactory/Camino"></a>
