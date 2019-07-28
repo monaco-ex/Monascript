@@ -26,6 +26,10 @@ https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
 
 ## Nagesen Sponsor
 
+<a href="https://twitter.com/nachat_dayo"><img src="https://pbs.twimg.com/profile_images/780411805327699968/3G2c4h22_400x400.jpg" width="50px" height="50px" title="なちゃっと"></a>
+<a href="https://twitter.com/rkgk_ac"><img src="https://pbs.twimg.com/profile_images/1020216425359659008/-eFijqMl_400x400.jpg" width="50px" height="50px" title="Rakugaki AC"></a>
+<a href="https://twitter.com/tadajam"><img src="https://pbs.twimg.com/profile_images/754421235665154048/nKIZB550_400x400.jpg" width="50px" height="50px" title="tadajam"></a> and 5 anonymous sponsors.
+
 ## Cloud Resource Sponsor
 
 <a href="https://twitter.com/PizzaFactoryIDE/"><img src="https://pbs.twimg.com/profile_images/1130423906647470080/JR90577T_400x400.png" width="50px" height="50px" title="PizzaFactory/Camino"></a>
