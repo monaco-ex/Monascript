@@ -18,6 +18,8 @@ https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
 
 ## Platinum Sponsor
 
+<a href="#"><img src="https://user-images.githubusercontent.com/16408160/62019275-1c394880-b1f9-11e9-93c1-c4c6fec3b064.png" width="200px" height="200px" title="anonymous contributor"></a>
+
 ## Gold Sponsor
 
 ## Silver Sponsor
@@ -28,7 +30,9 @@ https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
 
 <a href="https://twitter.com/nachat_dayo"><img src="https://pbs.twimg.com/profile_images/780411805327699968/3G2c4h22_400x400.jpg" width="50px" height="50px" title="なちゃっと"></a>
 <a href="https://twitter.com/rkgk_ac"><img src="https://pbs.twimg.com/profile_images/1020216425359659008/-eFijqMl_400x400.jpg" width="50px" height="50px" title="Rakugaki AC"></a>
-<a href="https://twitter.com/tadajam"><img src="https://pbs.twimg.com/profile_images/754421235665154048/nKIZB550_400x400.jpg" width="50px" height="50px" title="tadajam"></a> and 5 anonymous sponsors.
+<a href="https://twitter.com/tadajam"><img  src="https://pbs.twimg.com/profile_images/754421235665154048/nKIZB550_400x400.jpg" width="50px" height="50px" title="tadajam"></a>
+<a href="https://twitter.com/flon732"><img  src="https://i.imgur.com/x8EVCEI.png" width="50px" height="50px" title="nolf237"></a>
+and 4 anonymous sponsors.
 
 ## Cloud Resource Sponsor
 
