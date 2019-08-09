@@ -18,7 +18,7 @@ https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
 
 ## Platinum Sponsor
 
-<a href="#"><img src="https://user-images.githubusercontent.com/16408160/62019275-1c394880-b1f9-11e9-93c1-c4c6fec3b064.png" width="200px" height="200px" title="anonymous contributor"></a>
+<a href="#"><img src="https://user-images.githubusercontent.com/16408160/62019275-1c394880-b1f9-11e9-93c1-c4c6fec3b064.png" width="200px" height="200px" title="anonymous contributor"></a> and more anonymous sponsors.
 
 ## Gold Sponsor
 
@@ -26,13 +26,16 @@ https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
 
 ## Bronze Sponsor
 
+<a href="https://twitter.com/LOX2017JP"><img src="https://pbs.twimg.com/profile_images/961215704962748416/tLOiSUnO_400x400.jpg" width="100px" height="100px" title="LOX_EarlyMan"></a>
+
 ## Nagesen Sponsor
 
 <a href="https://twitter.com/nachat_dayo"><img src="https://pbs.twimg.com/profile_images/780411805327699968/3G2c4h22_400x400.jpg" width="50px" height="50px" title="なちゃっと"></a>
 <a href="https://twitter.com/rkgk_ac"><img src="https://pbs.twimg.com/profile_images/1020216425359659008/-eFijqMl_400x400.jpg" width="50px" height="50px" title="Rakugaki AC"></a>
 <a href="https://twitter.com/tadajam"><img  src="https://pbs.twimg.com/profile_images/754421235665154048/nKIZB550_400x400.jpg" width="50px" height="50px" title="tadajam"></a>
 <a href="https://twitter.com/flon732"><img  src="https://i.imgur.com/x8EVCEI.png" width="50px" height="50px" title="nolf237"></a>
-and 4 anonymous sponsors.
+<a href="https://twitter.com/kequbot"><img  src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png" width="50px" height="50px" title="kequbot"></a>
+and more anonymous sponsors.
 
 ## Cloud Resource Sponsor
 
