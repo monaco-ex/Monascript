@@ -36,6 +36,7 @@ https://btcpay.c.pizzafactory.jp/apps/gX5PESYVFDr9AL1vMo76ToaiDU3/crowdfund
 <a href="https://twitter.com/flon732"><img  src="https://i.imgur.com/x8EVCEI.png" width="50px" height="50px" title="nolf237"></a>
 <a href="https://twitter.com/kequbot"><img  src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png" width="50px" height="50px" title="kequbot"></a>
 <a href="https://twitter.com/MONACOINISTA"><img src="https://i.imgur.com/FIjhhlZ.png" width="50px" height="50px" title="にすた氏"></a>
+<a href="https://github.com/monaparty"><img src="https://avatars1.githubusercontent.com/u/29082337?s=50&v=4" width="50px" height="50px" title="にすた氏"></a>
 and more anonymous sponsors.
 
 ## Cloud Resource Sponsor
